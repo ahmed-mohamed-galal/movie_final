@@ -1,3 +1,4 @@
+%%writefile moviefinal.py
 
 import streamlit as st
 import pandas as pd 
@@ -335,15 +336,8 @@ elif select_ss == 'Machine Learning':
                             columns=[ 'popularity', 'runtime', 'status', 'release_date',
                                     'vote_average', 'vote_count', 'languages', 'company_names' ,'type_of_movie','title','revenue', 'countries'])
     
-    @st.cache_resource
-    def load_model():
-        return joblib.load("knn9.h5")
-    df = get_input()
-    st.write("📊 Your Input:")
-    st.dataframe(df)
-
-    model = load_model()
-    prediction = model.predict(df)
-
-    st.subheader("🎯 Model Prediction")
-    st.write(prediction)
+    
+    test = get_input()
+    
+    pl = joblib.load('knn9.h5')
+    st.write(pl.predict(test))
